@@ -75,7 +75,7 @@ int main()
     int c=1,ch;
     while(c)
     {
-        cout<<"1.Push\n2.Pop\n3.Show Top\n4.display Stack"<<endl;
+        cout<<"1.Push\n2.Pop\n3.Show Top\n4.display Stack\n5.No of elements in stack"<<endl;
         cin>>ch;
         switch(ch)
         {
@@ -91,8 +91,11 @@ int main()
             case 4:
             s1.show();
             break;
+            case 5:
+            cout<<"Elements in stack = "<<count;
+            break;
             default:
-            cout<<"please select valid operation"<<endl;
+            cout<<"\nPlease select valid operation"<<endl;
             break;
         }
         cout<<"\n-----------\n Do you want to continue? (1 to continue /// 0 to exit)"<<endl;
