@@ -11,12 +11,42 @@ class linearSearch
 		}
 		return -1;
 	}
+	int recursive_Find(int a[],int target,int count)
+	{
+		if(count>a.length)
+			return -1;
+		else
+		{
+			if(a[count]==target)
+				return count+1;
+			else
+				return recursive_Find(a,target,count+1);
+		}
+	}
 }
 
 class binarySearch
 {
-	int mid=0;
+	int mid=0,count;
 	int find(int a[],int target,int low,int high)
+	{
+		count=-2;
+		while(low < high)
+		{
+			mid=(low+high)/2;
+			if(a[mid]==target)
+			{
+				count=mid;
+				break;
+			}
+			else if(a[mid]<target)
+			low=mid+1;
+			else
+			high=mid-1;
+		}
+		return count+1;
+	}
+	int recursive_Find(int a[],int target,int low,int high)
 	{
 		if(low > high)
 		return -1;
@@ -24,11 +54,11 @@ class binarySearch
 		{
 			mid=(low+high)/2;
 			if(a[mid]==target)
-			return mid+1;
+				return mid+1;
 			else if(a[mid]<target)
-			return find(a,target,mid+1,high);
+				return recursive_Find(a,target,mid+1,high);
 			else
-			return find(a,target,low,mid-1);
+				return recursive_Find(a,target,low,mid-1);
 		}
 	}
 }
@@ -56,12 +86,42 @@ public class search
 			switch(option)
 			{
 				case 1:
-					position = ls.find(data,target);
+				System.out.println("\nSelect the operation\n1. Recursive\n2. Normal");
+				option=sc.nextInt();
+					switch(option)
+					{
+						case 1:
+						position =ls.recursive_Find(data,target,0);
+						break;
+						case 2:
+						position = ls.find(data,target);
+						break;
+						default:
+						System.out.println("Invalid input");
+						continue;
+					}
 					break;
+
 				case 2:
-					int low=0,high=data.length;
-					position = bs.find(data,target,low,high);
+				System.out.println("\nSelect the operation\n1. Recursive\n2. Normal");
+				option=sc.nextInt();
+				int low=0,high=data.length;
+					switch(option)
+					{
+						case 1:
+						position =bs.recursive_Find(data,target,low,high);
+						break;
+						case 2:
+						position = bs.find(data,target,low,high);
+						break;
+						default:
+						System.out.println("Invalid input");
+						continue;
+					}
 					break;
+				default:
+				System.out.println("Invalid input");
+				continue;
 			}
 			if(position == -1)
 			System.out.println("\nElement not found in an array ");
