@@ -1,4 +1,3 @@
-package Queue;
 import java.util.*;
 
 class node
